@@ -93,6 +93,6 @@ input[type=range].theme3::-webkit-slider-thumb {
 	.theme-row {
 		width: 90%;
 		margin-top: 10%;
-		font-size: 50%;
+		font-size: 40%;
 	}
 }
