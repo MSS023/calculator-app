@@ -17,7 +17,7 @@ function Calculator(props) {
 		if(current.length>1)
 			setCurrent(current.slice(0,current.length-1));
 		else
-			setCurrent(["0",""]);
+			setCurrent("0");
 	}
 	function handleReset() {
 		setCurrent("0");
