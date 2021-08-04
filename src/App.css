@@ -92,5 +92,6 @@ input[type=range].theme3::-webkit-slider-thumb {
 @media screen and (max-width: 556px) {
 	.theme-row {
 		width: 90%;
+		margin-top: 10%;
 	}
 }
