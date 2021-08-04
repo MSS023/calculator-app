@@ -3,13 +3,11 @@
   width: 100%;
   height: -webkit-fill-available;
   position: absolute;
-  display: block;
 }
 
 .App.theme1 {
   background-color: hsl(222, 26%, 31%); 
   color: white;
-  height: auto;
 }
 
 .App.theme2 {
@@ -94,6 +92,5 @@ input[type=range].theme3::-webkit-slider-thumb {
 @media screen and (max-width: 556px) {
 	.theme-row {
 		width: 90%;
-		margin-top: 10%;
 	}
 }
