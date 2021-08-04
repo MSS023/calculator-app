@@ -10,7 +10,7 @@ function Calculator(props) {
 		else
 		{
 			var scroll="",newcurrent=current+value;
-			if(newcurrent.length>13)
+			if(newcurrent.length>10)
 				scroll="scroll"
 			setCurrent([newcurrent,scroll]);
 		}
@@ -19,7 +19,7 @@ function Calculator(props) {
 		if(current.length>1)
 		{
 			var scroll="";
-			if(current.length>14)
+			if(current.length>11)
 				scroll="scroll";
 			setCurrent([current.slice(0,current.length-1),scroll]);
 		}
@@ -35,7 +35,7 @@ function Calculator(props) {
 		const last=current.slice(-1);
 		if(last==="+" || last==="-" || last==="*" || last==="/")
 		{
-			if(current.length>13)
+			if(current.length>10)
 				scroll="scroll"
 			if(sign!=="x")
 				setCurrent([current.slice(0,current.length-1)+sign,scroll]);
@@ -44,7 +44,7 @@ function Calculator(props) {
 		}
 		else
 		{
-			if(current.length>12)
+			if(current.length>9)
 				scroll="scroll";
 			if(sign!=="x")
 				setCurrent([current+sign,scroll]);
@@ -63,7 +63,7 @@ function Calculator(props) {
 					newcurrent=ans.toString(10);
 				else
 					newcurrent=ans.toFixed(6).toString(10);
-				if(newcurrent>13)
+				if(newcurrent>10)
 					scroll="scroll";
 				setCurrent([newcurrent,scroll]);
 			}
@@ -76,7 +76,7 @@ function Calculator(props) {
 	}
 	function handleKeyPress(e){
 		var key=e.key;
-		console.log(key);
+		var scroll="",newcurrent;
 		if((key>="0" && key<="9") || key==="." )
 		{
 			var value=key;
@@ -84,8 +84,8 @@ function Calculator(props) {
 				setCurrent([value,""]);
 			else
 			{
-				var scroll="",newcurrent=current+value;
-				if(newcurrent.length>13)
+				newcurrent=current+value;
+				if(newcurrent.length>10)
 					scroll="scroll"
 				setCurrent([newcurrent,scroll]);
 			}
@@ -94,8 +94,8 @@ function Calculator(props) {
 		{
 			if(current.length>1)
 			{
-				var scroll="";
-				if(current.length>14)
+				scroll="";
+				if(current.length>11)
 					scroll="scroll";
 				setCurrent([current.slice(0,current.length-1),scroll]);
 			}
@@ -105,11 +105,11 @@ function Calculator(props) {
 		else if(key==="+" || key==="-" || key==="*" || key==="x" || key==="/")
 		{
 			var sign=key;
-			var scroll="";
+			scroll="";
 			const last=current.slice(-1);
 			if(last==="+" || last==="-" || last==="*" || last==="/")
 			{
-				if(current.length>13)
+				if(current.length>10)
 					scroll="scroll"
 				if(sign!=="x")
 					setCurrent([current.slice(0,current.length-1)+sign,scroll]);
@@ -118,7 +118,7 @@ function Calculator(props) {
 			}
 			else
 			{
-				if(current.length>12)
+				if(current.length>9)
 					scroll="scroll";
 				if(sign!=="x")
 					setCurrent([current+sign,scroll]);
@@ -129,7 +129,7 @@ function Calculator(props) {
 		else if(key==="=" || key==="Enter")
 		{
 			const last=current.slice(-1);
-			var newcurrent,scroll="";
+			scroll="";
 			if(last!=="+" && last!=="-" && last!=="*" && last!=="/")
 			{
 				try {
@@ -138,7 +138,7 @@ function Calculator(props) {
 						newcurrent=ans.toString(10);
 					else
 						newcurrent=ans.toFixed(6).toString(10);
-					if(newcurrent>13)
+					if(newcurrent>10)
 						scroll="scroll";
 					setCurrent([newcurrent,scroll]);
 				}
