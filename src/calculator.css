@@ -22,7 +22,6 @@
 }
 
 .screen.scroll {
-	overflow-y: scroll;
 	word-wrap: break-word;
 }
 
