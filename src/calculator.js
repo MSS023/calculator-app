@@ -2,59 +2,47 @@ import "./calculator.css";
 import React,{useState} from "react";
 
 function Calculator(props) {
-	const [[current,mscroll],setCurrent]=useState(["0",""]);
+	const [current,setCurrent]=useState("0");
 	function handleKey(e) {
 		var value=e.target.value;
 		if(current==="0")
 			setCurrent([value,""]);
 		else
 		{
-			var scroll="",newcurrent=current+value;
-			if(newcurrent.length>10)
-				scroll="scroll"
-			setCurrent([newcurrent,scroll]);
+			var newcurrent=current+value;
+			setCurrent(newcurrent);
 		}
 	}
 	function handleDel(e) {
 		if(current.length>1)
-		{
-			var scroll="";
-			if(current.length>11)
-				scroll="scroll";
-			setCurrent([current.slice(0,current.length-1),scroll]);
-		}
+			setCurrent(current.slice(0,current.length-1));
 		else
 			setCurrent(["0",""]);
 	}
 	function handleReset() {
-		setCurrent(["0",""]);
+		setCurrent("0");
 	}
 	function handleSign(e) {
 		var sign=e.target.value;
-		var scroll="";
 		const last=current.slice(-1);
 		if(last==="+" || last==="-" || last==="*" || last==="/")
 		{
-			if(current.length>10)
-				scroll="scroll"
 			if(sign!=="x")
-				setCurrent([current.slice(0,current.length-1)+sign,scroll]);
+				setCurrent(current.slice(0,current.length-1)+sign);
 			else
-				setCurrent([current.slice(0,current.length-1)+"*",scroll])
+				setCurrent(current.slice(0,current.length-1)+"*")
 		}
 		else
 		{
-			if(current.length>9)
-				scroll="scroll";
 			if(sign!=="x")
-				setCurrent([current+sign,scroll]);
+				setCurrent(current+sign);
 			else
-				setCurrent([current+"*",scroll]);
+				setCurrent(current+"*");
 		}
 	}
 	function handleEqual(e) {
 		const last=current.slice(-1);
-		var newcurrent,scroll="";
+		var newcurrent;
 		if(last!=="+" && last!=="-" && last!=="*" && last!=="/")
 		{
 			try {
@@ -63,9 +51,7 @@ function Calculator(props) {
 					newcurrent=ans.toString(10);
 				else
 					newcurrent=ans.toFixed(6).toString(10);
-				if(newcurrent>10)
-					scroll="scroll";
-				setCurrent([newcurrent,scroll]);
+				setCurrent(newcurrent);
 			}
 			catch (error) {
 				alert("Unexpected expression");
@@ -76,60 +62,47 @@ function Calculator(props) {
 	}
 	function handleKeyPress(e){
 		var key=e.key;
-		var scroll="",newcurrent;
+		var newcurrent;
 		if((key>="0" && key<="9") || key==="." )
 		{
 			var value=key;
 			if(current==="0")
-				setCurrent([value,""]);
+				setCurrent(value);
 			else
 			{
 				newcurrent=current+value;
-				if(newcurrent.length>10)
-					scroll="scroll"
-				setCurrent([newcurrent,scroll]);
+				setCurrent(newcurrent);
 			}
 		}
 		else if(key==="Backspace")
 		{
 			if(current.length>1)
-			{
-				scroll="";
-				if(current.length>11)
-					scroll="scroll";
-				setCurrent([current.slice(0,current.length-1),scroll]);
-			}
+				setCurrent(current.slice(0,current.length-1));
 			else
-				setCurrent(["0",""]);
+				setCurrent("0");
 		}
 		else if(key==="+" || key==="-" || key==="*" || key==="x" || key==="/")
 		{
 			var sign=key;
-			scroll="";
 			const last=current.slice(-1);
 			if(last==="+" || last==="-" || last==="*" || last==="/")
 			{
-				if(current.length>10)
-					scroll="scroll"
 				if(sign!=="x")
-					setCurrent([current.slice(0,current.length-1)+sign,scroll]);
+					setCurrent(current.slice(0,current.length-1)+sign);
 				else
-					setCurrent([current.slice(0,current.length-1)+"*",scroll])
+					setCurrent(current.slice(0,current.length-1)+"*")
 			}
 			else
 			{
-				if(current.length>9)
-					scroll="scroll";
 				if(sign!=="x")
-					setCurrent([current+sign,scroll]);
+					setCurrent(current+sign);
 				else
-					setCurrent([current+"*",scroll]);
+					setCurrent(current+"*");
 			}	
 		}
 		else if(key==="=" || key==="Enter")
 		{
 			const last=current.slice(-1);
-			scroll="";
 			if(last!=="+" && last!=="-" && last!=="*" && last!=="/")
 			{
 				try {
@@ -138,9 +111,7 @@ function Calculator(props) {
 						newcurrent=ans.toString(10);
 					else
 						newcurrent=ans.toFixed(6).toString(10);
-					if(newcurrent>10)
-						scroll="scroll";
-					setCurrent([newcurrent,scroll]);
+					setCurrent(newcurrent);
 				}
 				catch (error)
 				{
@@ -152,12 +123,12 @@ function Calculator(props) {
 		}
 		else if(key==="Escape")
 		{
-			setCurrent(["0",""]);
+			setCurrent("0");
 		}
 	}
 	
 	return <div className={"calculator "+props.theme} onKeyDown={handleKeyPress} tabIndex="0">
-		<div className={"screen "+props.theme+" "+mscroll}>
+		<div className={"screen "+props.theme}>
 			{current}
 		</div>
 		<div className={"panel "+props.theme}>
