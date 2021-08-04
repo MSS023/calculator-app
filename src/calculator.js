@@ -6,7 +6,7 @@ function Calculator(props) {
 	function handleKey(e) {
 		var value=e.target.value;
 		if(current==="0")
-			setCurrent([value,""]);
+			setCurrent(value);
 		else
 		{
 			var newcurrent=current+value;
